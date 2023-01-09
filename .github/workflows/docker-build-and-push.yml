@@ -45,7 +45,7 @@ jobs:
     name: send nomad job
     steps:
       - run: |
-          'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )' 
+          which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y ) 
           apt-get install curl gnupg lsb-release software-properties-common sshpass -y
           mkdir -p ~/.ssh
           eval $(ssh-agent -s)
