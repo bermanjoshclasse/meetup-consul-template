@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zr=#%e&1morqq73my9-(*3rsp9x=1)nj3rnuap-s5_5699*lm9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['meetup']
 
 
 # Application definition
