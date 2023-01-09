@@ -50,7 +50,7 @@ jobs:
           curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
           sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
           sudo apt-get update
-          sudo apt-get install curl gnupg lsb-release software-properties-common sshpass nomad-y
+          sudo apt-get install curl gnupg lsb-release software-properties-common sshpass nomad -y
           mkdir -p ~/.ssh
           eval $(ssh-agent -s)
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
