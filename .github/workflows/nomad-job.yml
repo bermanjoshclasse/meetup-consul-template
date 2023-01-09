@@ -42,11 +42,14 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
   send-nomad-job:
     runs-on: ubuntu-latest
-    uses: actions/checkout@v3
     environment: meetup-cd
     name: send nomad job
     steps:
-      - run: |
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: nomad command
+        run: |
           which ssh-agent || ( sudo apt-get update -y && apt-get install openssh-client -y ) 
           curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
           sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
