@@ -52,6 +52,6 @@ jobs:
           eval $(ssh-agent -s)
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           sshpass -p ${{ secrets.SSHPASS }} ssh -4 -q -N -f -T -M -L 4646:10.106.0.2:4646 -L 8500:10.106.0.2:8500 root@144.126.204.150
-          curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
           sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
           sudo apt-get update && apt-get install nomad -y
