@@ -14,7 +14,8 @@ jobs:
     permissions:
       contents: read
       packages: write
-
+    outputs:
+      docker_tag: ${{ steps.meta.outputs.tags }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -42,6 +43,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
   send-nomad-job:
     runs-on: ubuntu-latest
+    needs: build-and-push-image
     environment: meetup-cd
     name: send nomad job
     steps:
@@ -59,4 +61,4 @@ jobs:
           eval $(ssh-agent -s)
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           sshpass -p ${{ secrets.SSHPASS }} ssh -4 -q -N -f -T -M -L 4646:10.106.0.2:4646 -L 8500:10.106.0.2:8500 root@144.126.204.150
-          nomad job run -var "docker_image_tag=${{ jobs.build-and-push-image.steps.meta.outputs.tags }}" meetup.nomad
+          nomad job run -var "docker_image_tag=${{ needs.build-and-push-image.outputs.docker_tag }}" meetup.nomad
