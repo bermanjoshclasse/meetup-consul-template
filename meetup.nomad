@@ -22,7 +22,7 @@ job "meetup" {
       }
 
       config {
-        image   = "ghcr.io/bermanjoshclasse/meetup-consul-template:${var.docker_image_tag}"
+        image   = "${var.docker_image_tag}"
         ports   = ["python"]
       }
 
