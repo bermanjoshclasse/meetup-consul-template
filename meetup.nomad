@@ -23,7 +23,7 @@ job "meetup" {
 
       config {
         image   = "${var.docker_image_tag}"
-        ports   = ["python"]
+        ports   = ["meetup"]
       }
 
       service {
